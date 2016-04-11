@@ -8,7 +8,7 @@
         <script src="lib/jquery.mobile-1.3.1.js"></script>
 		<script src="underscore.js"></script>
 		<script src="backbone.js"></script>
-		<script src="models.js"></script>
+		<script src="script.js"></script>
         <link href="src/css/jquery.mobile.structure-1.3.1.css" rel="stylesheet"/>
         <link href="src/css/jquery.mobile.theme-1.3.1.css" rel="stylesheet" />
 		
@@ -27,9 +27,7 @@
                 <h1>Tip Sharer</h1>
                 <div data-role="navbar">
                    <ul>
-                        <li>
-                            <a href="#page11" 		 data-role="button"	   data-icon="search" data-iconpos="top"   data-inline="true">Groups</a>
-                        </li>
+                        
                         <li>
                             <a href="#page1" data-role="button"   data-icon="search" data-iconpos="top"   data-inline="true">Persons</a>
                         </li>
@@ -52,6 +50,14 @@
                     </form>
 					 <a href="#" data-role="button" data-inline="true" onclick="addPerson()">Include Person</a>
                 </div>
+				<div id="persons">
+					
+					<ul id="listppl">
+						
+					</ul>
+					
+				
+				</div>
             </div>
             <div data-role="footer">
                 <h1>Contact: a@testetest</h1>
@@ -64,9 +70,7 @@
                 <h1>Tip Sharer</h1>
                 <div data-role="navbar">
                     <ul>
-                        <li>
-                            <a href="#page11" 		 data-role="button"	   data-icon="search" data-iconpos="top"   data-inline="true">Groups</a>
-                        </li>
+                        
                         <li>
                             <a href="#page1" data-role="button"   data-icon="search" data-iconpos="top"   data-inline="true">Persons</a>
                         </li>
@@ -110,9 +114,7 @@
                 <h1>Add Person</h1>
                 <div data-role="navbar">
                     <ul>
-                        <li>
-                            <a href="#page11" 		 data-role="button"	   data-icon="search" data-iconpos="top"   data-inline="true">Groups</a>
-                        </li>
+                        
                         <li>
                             <a href="#page1" data-role="button"   data-icon="search" data-iconpos="top"   data-inline="true">Persons</a>
                         </li>
@@ -132,21 +134,22 @@
                             <label for="text1">Friends:</label>
                          </div>
                         <div data-role="fieldcontain">
-                            <label for="text2">Value:</label>
-                            <input type="text" id="text2" />
+                            <label for="text2">Total Value:</label>
+                            <input type="text" id="totalbill" />
                         </div>
 						<div data-role="fieldcontain">
 							<label for="select-native-1">Divided By:</label>
-							<select name="select-native-1" id="select-native-1">
-								<option value="1">The 1st Option</option>
-								<option value="2">The 2nd Option</option>
-								<option value="3">The 3rd Option</option>
-								<option value="4">The 4th Option</option>
+							<select name="select-native-1" id="selectPersonBill">
+								<option value="">Select</option>
+								
 							</select>
 						</div>
                     </form>
-					 <a href="#" data-role="button" data-inline="true">Add Person</a>
-					 
+					
+					<a href="#" data-role="button" onclick="App2.prototype.addPerson($('#selectPersonBill').val())" data-inline="true">Add Person</a>
+					 <a href="#" onclick="App2.prototype.save()"  data-role="button" data-inline="true">Save share</a>
+					 </br>
+					 <h3>Shares Per person: <span id="sharepptot">  </span> </h3>
 					 <div id="contentShare">
 						
 					 </div>
@@ -175,9 +178,7 @@
                 <h1>Result</h1>
                 <div data-role="navbar">
                       <ul>
-                        <li>
-                            <a href="#page11" 		 data-role="button"	   data-icon="search" data-iconpos="top"   data-inline="true">Groups</a>
-                        </li>
+                        
                         <li>
                             <a href="#page1" data-role="button"   data-icon="search" data-iconpos="top"   data-inline="true">Persons</a>
                         </li>
@@ -198,13 +199,8 @@
 					
 					
 					
-					<div class="ui-grid-c">
-						<div class="ui-block-a"><div class="ui-bar ui-bar-a" style="margin-left: 2%;">SAM
-						<br /><br />12.5<br />8.5<br />1.6
-						</div></div>
-						<div class="ui-block-b"><div class="ui-bar ui-bar-a" style="margin-left: 2%;">ANN<br /><br />12.5<br />8.5<br />1.6</div></div>
-						<div class="ui-block-c"><div class="ui-bar ui-bar-a" style="margin-left: 2%;">BEN<br /><br />12.5<br />8.5<br />1.6</div></div>
-						<div class="ui-block-d"><div class="ui-bar ui-bar-a" style="margin-left: 2%;">IVY<br /><br />12.5<br />8.5<br />1.6</div></div>
+					<div class="ui-grid" id="bills">
+						
 					</div><!-- /grid-c -->
 					
 					

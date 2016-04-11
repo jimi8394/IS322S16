@@ -1,11 +1,3 @@
-var Person = Backbone.Model.extend({
-  defaults: {
-    name:    ''
-  }
-});
-var Personlist = Backbone.Collection.extend({
-  model: Person
-});
 
 
 var Group = Backbone.Model.extend({
@@ -20,24 +12,67 @@ var Bill = {
 	persons:[]
 };
 
-function addPerson()
-{
-	if(typeof localStorage['persons'] == 'undefined'){
-		localStorage['persons'] = '[]';
-	}
-	var name = $('#personName').val();
-	person = new Person;
-	person.name = name;
-	var persons = JSON.parse(localStorage['persons']);
-	persons.push(person);
-	persons = JSON.stringify(persons);
-	
-	Personlist.add(person);
-	
-}
 
 
 (function(){
+
+var Person = Backbone.Model.extend({
+  defaults: {
+    name:    ''
+  }
+});
+
+
+var Personlist = Backbone.Collection.extend({
+  model: Person
+});
+
+
+
+
+var persons = new ServiceList([
+		new Person({ name: 'teste1'}),
+		new Person({ name: 'teste2'}),
+		new Person({ name: 'teste3'}),
+		new Person({ name: 'teste4'})
+		// Add more here
+]);
+
+
+var ServiceView = Backbone.View.extend({
+		
+		tagName: 'li',
+
+		events:{
+			'click': 'toggleService'
+		},
+
+		initialize: function(){
+
+			// Set up event listeners. The change backbone event
+			// is raised when a property changes (like the checked field)
+
+			this.listenTo(this.model, 'change', this.render);
+		},
+
+		render: function(){
+
+			// Create the HTML
+
+			this.$el.html('<input type="checkbox" value="1" name="' + this.model.get('title') + '" /> ' + this.model.get('title') + '<span>$' + this.model.get('price') + '</span>');
+			this.$('input').prop('checked', this.model.get('checked'));
+
+			// Returning the object is a good practice
+			// that makes chaining possible
+			return this;
+		},
+
+		toggleService: function(){
+			this.model.toggle();
+		}
+		
+});
+
 
 window.App = {
 	Models: {Person,Personlist},
